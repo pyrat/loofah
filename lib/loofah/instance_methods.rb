@@ -115,6 +115,16 @@ module Loofah
     def to_text(options={})
       Loofah::Helpers.remove_extraneous_whitespace self.dup.scrub!(:newline_block_elements).text(options)
     end
+    
+    # Nokogiri 1.3.3 Compatibility
+    def method_missing(method_name, *args)
+      if method_name.to_s == 'at_xpath'
+        send(:xpath, *args)
+      else
+        super
+      end
+    end
+    
   end
 
   module DocumentDecorator # :nodoc:

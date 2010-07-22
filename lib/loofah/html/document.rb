@@ -13,6 +13,7 @@ module Loofah
       def serialize_root
         at_xpath("/html/body")
       end
+      
     end
   end
 end
